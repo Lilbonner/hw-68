@@ -1,12 +1,17 @@
-import './App.css'
+import './App.css';
+import TodoList from './container/todoList';
+import TodoItem from './container/todoItem';
 
 function App() {
 
   return (
     <>
-        <p className="text-2xl">hello</p>
+      <div>
+      <TodoList/>
+      <TodoItem/>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
