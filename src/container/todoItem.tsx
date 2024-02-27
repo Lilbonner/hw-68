@@ -1,19 +1,35 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleTodo } from "./todoSlice"
+import { useDispatch as useReduxDispatch } from 'react-redux';
+import type { AppDispatch } from '../App/Store';
+import { deleteTodo, toggleTodo } from "./todoSlice"
 
-const TodoItem: React.FC<{ id: string; title: string; completed: boolean }> = ({ id, title, completed }) => {
+interface TodoItemProps {
+    id: string;
+    title: string;
+    completed: boolean;
+}
+
+export const useDispatch = () => useReduxDispatch<AppDispatch>();
+
+const TodoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
     const dispatch = useDispatch();
 
     const handleToggle = () => {
         dispatch(toggleTodo(id));
     };
 
+    const handleDelete = () => {
+        dispatch(deleteTodo(id));
+    };
+
     return (
         <div>
-            <div className="border-2 border-amber-50 w-40 h-10 text-center rounded-md mt-10 flex justify-between items-center">
+            <div className={`border-2 border-amber-50 w-72 h-20 text-center rounded-md mt-10 flex bg-gray-300 text-black justify-between items-center ${completed ? 'bg-gray-500 text-emerald-300' : ''}`}>
                 <p className="ml-5">{title}</p>
-                <input type="checkbox" checked={completed} onChange={handleToggle} className="mr-5" />
+                <div>
+                    <input type="checkbox" checked={completed} onChange={handleToggle} className="mr-5" />
+                    <button onClick={handleDelete}>Delete</button>
+                </div>
             </div>
         </div>
     );
