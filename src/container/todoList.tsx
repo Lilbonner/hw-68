@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../App/Store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../App/Store';
 import { addTodo, fetchTodos } from './todoSlice';
-import TodoItem, {useDispatch} from "./todoItem";
+import TodoItem from "./todoItem";
 
 const TodoList: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [inputValue, setInputValue] = useState('');
     const [loaded, setLoaded] = useState(false);
 
