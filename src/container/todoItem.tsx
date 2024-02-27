@@ -26,9 +26,9 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
         <div>
             <div className={`border-2 border-amber-50 w-72 h-20 text-center rounded-md mt-10 flex bg-gray-300 text-black justify-between items-center ${completed ? 'bg-gray-500 text-emerald-300' : ''}`}>
                 <p className="ml-5">{title}</p>
-                <div>
-                    <input type="checkbox" checked={completed} onChange={handleToggle} className="mr-5" />
-                    <button onClick={handleDelete}>Delete</button>
+                <div className='flex'>
+                    <input type="checkbox" checked={completed} onChange={handleToggle} className="mr-4" />
+                    <button onClick={handleDelete} className='material-symbols-outlined'>Delete</button>
                 </div>
             </div>
         </div>
